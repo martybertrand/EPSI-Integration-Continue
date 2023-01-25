@@ -96,5 +96,17 @@ describe('Conversion des chiffres arabe en chiffres romains', () => {
         //ALORS on obtient VIII
         const chiffreRomain = convertToChiffreRomain.GetChiffreRomain()
         expect(chiffreRomain).toBe("VIII")
-    })  
+    })
+    test('Convertir chiffre 9', () => {
+        //ETANT DONNE le chiffre 9
+        const convertToChiffreRomain = new ChiffreRomain()
+        const chiffreArabe = 9
+
+        //QUAND on le convertit en chiffre romain
+        convertToChiffreRomain.Convertion(chiffreArabe)
+
+        //ALORS on obtient IX
+        const chiffreRomain = convertToChiffreRomain.GetChiffreRomain()
+        expect(chiffreRomain).toBe("IX")
+    })
 })
