@@ -121,4 +121,16 @@ describe('Conversion des chiffres arabe en chiffres romains', () => {
         const chiffreRomain = convertToChiffreRomain.GetChiffreRomain()
         expect(chiffreRomain).toBe("X")
     })
+    test('Convertir chiffre 11', () => {
+        //ETANT DONNE le chiffre 11
+        const convertToChiffreRomain = new ChiffreRomain()
+        const chiffreArabe = 11
+
+        //QUAND on le convertit en chiffre romain
+        convertToChiffreRomain.Convertion(chiffreArabe)
+
+        //ALORS on obtient XI
+        const chiffreRomain = convertToChiffreRomain.GetChiffreRomain()
+        expect(chiffreRomain).toBe("XI")
+    })
 })
