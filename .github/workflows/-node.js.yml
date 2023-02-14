@@ -41,7 +41,7 @@ jobs:
         if: failure()
         run: |
           git checkout rejected/no_build
-          git cherry-pick ${{ github.sha }}
+          git merge ${{ github.sha }}
           git push origin rejected/no_build
           git checkout dev 
           git reset --hard HEAD^
