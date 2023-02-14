@@ -31,7 +31,6 @@ jobs:
         run: |
           git fetch
           git checkout main
-          git merge --ff-only ${{ github.sha }}
           git push origin main
 
       #- name: Reject commit to rejected/no_build branch on failed tests 
