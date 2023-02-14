@@ -32,7 +32,7 @@ jobs:
           git config --local user.email "marty.bertrand@hotmail.com"
           git config --local user.name "martybertrand"
           git fetch
-          git checkout main
+          git checkout origin/main
           git merge --ff-only dev 
           git push
 
