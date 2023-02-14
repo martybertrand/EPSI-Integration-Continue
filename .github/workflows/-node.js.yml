@@ -32,10 +32,12 @@ jobs:
           git config --local user.email "marty.bertrand@hotmail.com"
           git config --local user.name "martybertrand"
           git fetch
+          git checkout dev
+          git pull
           git checkout main
-          git pull origin main
+          git pull
           git merge dev ${{ github.sha }}
-        #  git push origin main
+          git push origin main
 
       #- name: Reject commit to rejected/no_build branch on failed tests 
       #  if: failure()
