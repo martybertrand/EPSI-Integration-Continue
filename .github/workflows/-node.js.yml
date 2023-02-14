@@ -31,7 +31,9 @@ jobs:
         run: |
           git fetch
           git checkout main
-          git pull origin main 
+          git pull origin main
+          git config --local user.email "[hidden]"
+          git config --local user.name "CI"
           git merge origin/main ${{ github.sha }} --allow-unrelated-histories
         #  git push origin main
 
