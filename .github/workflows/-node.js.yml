@@ -31,8 +31,8 @@ jobs:
         run: |
           git fetch
           git checkout main
-          git pull origin main --allow-unrelated-histories
-          git merge ${{ github.sha }}
+          git pull origin main 
+          git merge --ff-only ${{ github.sha }} --allow-unrelated-histories
         #  git push origin main
 
       #- name: Reject commit to rejected/no_build branch on failed tests 
