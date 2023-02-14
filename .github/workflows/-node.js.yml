@@ -32,8 +32,8 @@ jobs:
           git fetch
           git checkout main
           git pull origin main
-          git config --local user.email "[hidden]"
-          git config --local user.name "CI"
+          git config --local user.email "marty.bertrand@hotmail.com"
+          git config --local user.name "martybertrand"
           git merge origin/main ${{ github.sha }} --allow-unrelated-histories
         #  git push origin main
 
