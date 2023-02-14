@@ -6,26 +6,42 @@ name: Node.js CI
 on:
   push:
     branches: [ "dev" ]
-  pull_request:
-    branches: [ "dev" ]
 
 jobs:
-  build:
+  build-and-test:
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x, 18.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    steps: 
+      - uses: actions/checkout@v2
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+          cache: 'npm'
 
-    steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Run Tests
+        run: npm test
+
+      - name: Fast-forward main on successful tests
+        if: success()
+        run: |
+          git checkout main
+          git pull origin main
+          git merge --ff-only ${{ github.sha }}
+          git push origin main
+
+      - name: Reject commit to rejected/no_build branch on failed tests 
+        if: failure()
+        run: |
+          git checkout rejected/no_build
+          git cherry-pick ${{ github.sha }}
+          git push origin rejected/no_build
+          git checkout dev 
+          git reset --hard HEAD^
