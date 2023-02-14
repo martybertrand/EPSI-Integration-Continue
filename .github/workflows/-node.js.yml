@@ -30,7 +30,7 @@ jobs:
         if: success()
         run: |
           git fetch
-        #  git checkout main
+          git checkout main
         #  git pull origin main --allow-unrelated-histories
         #  git merge --ff-only ${{ github.sha }}
         #  git push origin main
