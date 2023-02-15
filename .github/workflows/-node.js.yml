@@ -34,7 +34,7 @@ jobs:
           git fetch
           git checkout origin/main
           git merge --ff-only dev 
-          git push
+          git push 
 
       #- name: Reject commit to rejected/no_build branch on failed tests 
       #  if: failure()
